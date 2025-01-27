@@ -103,10 +103,10 @@ In order to achieve this, the Kernel Manager uses the `scx_loader` with a config
 
 |   Profile Name  	|  Command-line Flags  	|                                                         Description                                                         	|
 |:---------------:	|:--------------------:	|:---------------------------------------------------------------------------------------------------------------------------:	|
-| **Low Latency** 	| `-s 5000 -l 5000 -S 500 -m performance` 	| Meant to lower latency at the cost of throughput. Suitable for real-time applications like Audio Processing and Multimedia. 	|
+| **Low Latency** 	| `-k -s 5000 -l 5000` 	| Meant to lower latency at the cost of throughput. Suitable for real-time applications like Audio Processing and Multimedia. 	|
 | **Gaming**      	| `-m performance`  	| Optimizes for high performance in games. Prioritizes P-cores over E-cores on Intel CPUs and CCDs on Ryzen X3D CPUs.         	|
 | **Power Save**  	| `-m powersave`       	| Prioritizes power efficiency. Favors less performant cores (e.g E-cores on Intel).                                          	|
-| **Server**        | `-p`                | Disables the interactive task classification in Bpfland making more capable for a server, an increase of approximately 2-3% in server workloads is expected
+| **Server**        | `-c 0`                | Disables the interactive task classification in Bpfland making more capable for a server, an increase of approximadetely 2-3% in server workloads is expected
 
 #### LAVD
 
