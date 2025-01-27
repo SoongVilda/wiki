@@ -65,7 +65,29 @@ The `/etc/pacman.d/offline.conf` file is crucial for managing which packages are
 
 2. **Telling Pacman to read from the separate package ignore list.**
 
-   ```bash title='Add the following string at line 73 of the /etc/pacman.conf file'
+   ```bash title='Add the following line to the /etc/pacman.conf file'
+   Include = /etc/pacman.d/offline.conf
+   ```
+   *Example*
+   ```bash
+   # REPOSITORIES
+   #   - can be defined here or included from another file
+   #   - pacman will search repositories in the order defined here
+   #   - local/custom mirrors can be added here or in separate files
+   #   - repositories listed first will take precedence when packages
+   #     have identical names, regardless of version number
+   #   - URLs will have $repo replaced by the name of the current repo
+   #   - URLs will have $arch replaced by the name of the architecture
+   #
+   # Repository entries are of the format:
+   #       [repo-name]
+   #       Server = ServerName
+   #       Include = IncludePath
+   #
+   # The header [repo-name] is crucial - it must be present and
+   # uncommented to enable the repo.
+   #
+
    Include = /etc/pacman.d/offline.conf
    ```
 3. **Adding the CachyOS kernels in order to make pacman ignore them during regular updates**
