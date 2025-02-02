@@ -2,6 +2,33 @@
 title: GUI Installer Changelogs
 description: Changelogs of Calamares and the GUI Live ISO
 ---
+25.02
+----
+
+**Features**:
+- **Kernel**:
+  - Propeller Optimization is now applied to the default **linux-cachyos** kernel for all available architectures.
+    - **Note**: In combination with AutoFDO, this can improve performance by around 10%, depending on the workload.
+- **NVIDIA**: Added support for the Blackwell Architecture.
+- **ISO**: Using the nvidia-open module as the default to provide Blackwell support. Users with GPUs older than Turing should use the first or fallback boot option.
+- **Settings**: Enabled tap-to-click for X11 sessions by default.
+- **udev**: Use ntfs3 as the default driver for NTFS partitions.
+- **game-performance**: Disabled the screensaver while running games.
+- **kernel-manager (sched-ext)**: Added support for server mode.
+- **kernel**: Added fixes for the AMD preferred core feature.
+- **chwd**: Re-added the workaround for RTD3.
+- **Package Updates**: linux-cachyos 6.13.0, NVIDIA 570.86.16, LLVM 19, glibc 2.41, mesa 24.3.4.
+
+**Fixes**:
+- **chwd**: Fixed an issue where hybrid laptops with Intel and NVIDIA hardware could not use their GPU in DaVinci Resolve.
+- **glibc**: Added a fix for CVE-2025-0395.
+- **kernel-manager**: Attempted to install the prebuilt NVIDIA module, if available for the default Arch kernel.
+- **kernel-manager**: Added an extra check to avoid overwriting the value in case a module is not available.
+
+**Changelog for Handheld Edition:**
+- **hooks**: Allowed the use of natively compiled Proton again.
+- **misc**: Several updates and fixes.
+
 24.12
 ----
 
