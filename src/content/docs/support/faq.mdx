@@ -179,14 +179,6 @@ sudo pacman -S nvidia
     <br />
     <ImageComponent imgsrc={import('~/assets/images/cachy-browser-cookies.png')} />
 
-### Websites are not following the dark theme preference from the browser.
-
-- *This "issue" comes from the `privacy.resistFingerprinting` feature from Firefox. While it improves privacy, it also has its drawbacks such as websites not following the appearance preference.*
-  - **Follow the screenshot showing where to disable it:**
-    <br />
-    <ImageComponent imgsrc={import('~/assets/images/cachy-browser-resist-fingerprint.png')} />
-  - *After disabling this parameter. Restart your browser and try again.*
-
 ### GitHub Homepage makes the browser unusable and extremely slow.
 
 - *Cachy Browser due to it's nature of leaning towards privacy. Disables WebGL by default and GitHub depends on it for rendering their homepage*
@@ -194,16 +186,23 @@ sudo pacman -S nvidia
     <br />
     <ImageComponent imgsrc={import('~/assets/images/cachy-browser-webgl.png')} />
   - *After disabling this parameter. Restart your browser and try again.*
+*This recommendation also applies to websites that takes advantage of Hardware Acceleration via WebGL such as Photopea.*
 
 ### Your browser is being managed by your organization. Do i need to worry?
 
 - *No. This is because we include a [policies file](https://github.com/CachyOS/CachyOS-Browser-Settings/blob/master/distribution/policies.json) on which we disable features and add modifications to the browser. Example: `additional search engines.`*
 
-### Some keyboard combinations are not working in certain websites like Photopea
+### RFP (Resist Fingerprint Protection)
 
-- *This "issue" comes from the `privacy.resistFingerprinting` feature from Firefox.
-  - **Follow the screenshot showing where to disable it:**
-    <br />
+- Cachy Browser enables `privacy.resistFingerprinting` by default. While it improves privacy, it comes at the cost of some issues for users that are not aware such as the following ones:
+  - Rendering artifacts
+  - Dark theme not applying
+  - Unable to login in certain websites (Twitch)
+  - Some keybind combinations do not work
+
+- To verify if this feature is the one causing the issue you are currently experiencing. Take a look to the following [Mozilla Article](https://support.mozilla.org/en-US/kb/resist-fingerprinting) and expand the **How might Resist Fingerprinting break web pages?** section.
+
+*In order to disable RFP, go to `about:config` and search for **privacy.resistFingerprinting** and set it to `false`*
+
+<br />
     <ImageComponent imgsrc={import('~/assets/images/cachy-browser-resist-fingerprint.png')} />
-  - *After disabling this parameter. Restart your browser and the keyboard combinations should work again.*
-  - *Extra tip: Search for `webgl.disabled` and set it to `false` to take advantage of an improved Hardware Acceleration in Photopea.*
