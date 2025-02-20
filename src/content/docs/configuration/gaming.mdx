@@ -16,17 +16,30 @@ Before we dive into the fun stuff, it’s essential to ensure that your graphics
 
 ### Essential Packages
 
-To make things easier for you, CachyOS has grouped all the necessary packages for gaming into one meta package that includes all the known stores and extras for gaming in Linux. This makes the installation and setup process for gaming faster and less convoluted for everyone.
-
-```sh title='Run the following command in a terminal'
-sudo pacman -S cachyos-gaming-meta
-```
-
-:::note
-The `cachyos-gaming-meta` package installs all the important libraries, packages, plugins and stores such as Steam, Lutris and some tools which are necessary for most games to run and work properly. Check out the [package list](https://github.com/CachyOS/CachyOS-PKGBUILDS/blob/master/cachyos-gaming-meta/PKGBUILD#L10) for more information on what is installing.
+To make things easier for you, CachyOS has grouped all the necessary packages for gaming into one meta package that includes all the necessary dependencies and libraries for gaming in Linux and a separate package for the tools and launchers/stores. This makes the installation and setup process for gaming faster and less convoluted for everyone.
 
 *If you find that any packages are missing, feel free to let the CachyOS team know.*
-:::
+
+Follow the steps below to start with the gaming setup.
+<Tabs>
+    <TabItem label='Meta Package'>
+        ```sh
+        sudo pacman -S cachyos-gaming-meta
+        ```
+    </TabItem>
+    <TabItem label='Tools & Stores'>
+        *This package includes the following:*
+            - Gamescope, Goverlay, Heroic Games Launcher, Lutris, MangoHud and Steam.
+        ```sh
+        sudo pacman -S cachyos-gaming-applications
+        ```
+    </TabItem>
+    <TabItem label= 'CachyOS Hello'>
+    - Go to **Apps/Tweaks** and click on `Install Gaming packages`
+
+    *CachyOS Hello installs both packages `cachyos-gaming-meta` and `cachyos-gaming-applications`*
+    </TabItem>
+</Tabs>
 
 ## Steam
 
