@@ -49,8 +49,7 @@ and `hpet` device nodes by the audio group.
 - [NVIDIA RTD3](https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/udev/rules.d/71-nvidia.rules) - Configures dynamic power management functionality for the Turing GPU generation. **RTD3 does not work properly on Turing GPUs with the open modules**
 - [CPU DMA Latency](https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/udev/rules.d/99-cpu-dma-latency.rules) -
 Allows access to the `cpu_dma_latency` device node by the audio group.
-- [NTSync](https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/udev/rules.d/99-ntsync.rules) - Allows `ntsync` to be accessed by user-space
-applications
+- [Mount NTFS partitions as NTFS3 partitions without explicitly specifying NTFS3](https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/udev/rules.d/80-ntfs3-by-default.rules)
 
 ## modprobe Options
 
@@ -119,3 +118,7 @@ database
 - Timeout for stopping a service/unit set to **10s**
 - Soft limit for opened file descriptors set to **2048**
 - Hard limit for opened file descriptors set to **2097152**
+
+### X.Org
+
+- Enable [Tap to Click](https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/share/X11/xorg.conf.d/20-touchpad.conf) by default for all X11 sessions
