@@ -14,8 +14,8 @@ For a better idea of the various packages CachyOS has optimized, see [Optimized 
 
 ## Custom Kernel Tuned for Performance and Stability
 
-Aside from the CachyOS base kernel patch set that tunes various kernel parameters to improve desktop responsiveness, CachyOS also cherry picks promising 
-patch sets that have not been mainlined or not in the stable revision of the kernel. These patches undergo internal testing before being shipped to users 
+Aside from the CachyOS base kernel patch set that tunes various kernel parameters to improve desktop responsiveness, CachyOS also cherry picks promising
+patch sets that have not been mainlined or not in the stable revision of the kernel. These patches undergo internal testing before being shipped to users
 to ensure that stability isn't impacted. For a complete list of patches that CachyOS provides, see [Kernel](/features/kernel).
 
 ## Custom CPU Scheduler Support
@@ -25,11 +25,11 @@ to ensure that each and every task gets scheduled appropriately. The fair schedu
 [EEVDF (Earliest Eligible Virtual Deadline First)](https://lwn.net/Articles/925371/) algorithm.
 
 By default EEVDF is tuned to divide available CPU time fairly among all tasks and is mostly geared for throughput-oriented workloads. The CachyOS kernel
-[configures some EEVDF tunables](https://github.com/CachyOS/linux/blob/6.12/cachy/kernel/sched/fair.c#L76-L79) to prioritize desktop responsiveness over 
+[configures some EEVDF tunables](https://github.com/CachyOS/linux/blob/6.12/cachy/kernel/sched/fair.c#L76-L79) to prioritize desktop responsiveness over
 sheer throughput.
 
-However, EEVDF by design wasn't meant to be used for desktop interactivity. With that in mind, CachyOS ships kernels patched with the 
-[BORE (Burst-Oriented Response Enhancer)](https://github.com/firelzrd/bore-scheduler) scheduler that introduces an additional property 
+However, EEVDF by design wasn't meant to be used for desktop interactivity. With that in mind, CachyOS ships kernels patched with the
+[BORE (Burst-Oriented Response Enhancer)](https://github.com/firelzrd/bore-scheduler) scheduler that introduces an additional property
 to assign tasks requiring high responsiveness more CPU time compared to tasks that don't based on their "burstiness".
 
 In 6.12, the Linux kernel enables the ability to hotplug BPF schedulers and replace the fair scheduling class with a different scheduler. To facilitate this,
@@ -39,7 +39,7 @@ For more information about the kernels that CachyOS offers and sched-ext schedul
 
 ## Hardware Detection
 
-CachyOS ships its own [hardware detection tool](https://github.com/CachyOS/chwd) that correctly installs necessary packages and drivers for each system to lighten 
+CachyOS ships its own [hardware detection tool](https://github.com/CachyOS/chwd) that correctly installs necessary packages and drivers for each system to lighten
 the burden of post-install setups from users.
 
 ## Customizable Installation Process
@@ -47,7 +47,7 @@ the burden of post-install setups from users.
 The CachyOS installer guarantees that users can have the choice of what system they want. This customizability includes but is not limited to:
 - [Desktop Environments](/installation/desktop_environments/)
 - [Boot Managers](/installation/boot_managers/)
-- [Kernel Flavours](/features/kernel#variants)
+- [Kernel Flavors](/features/kernel#variants)
 - [Filesystems](/installation/filesystem)
 - Custom Packages to install during the installation process
 
@@ -70,5 +70,5 @@ List of applications CachyOS develops and maintains:
 ## Friendly and Active Community
 
 The most important highlight is CachyOS's ever-growing community. Without the community, CachyOS would never be able to reach where it is now.
-The community assists each other and share tips and tricks for a better linux experience. Join us in the 
+The community assists each other and share tips and tricks for a better linux experience. Join us in the
 [CachyOS Discord](https://discord.com/invite/cachyos-862292009423470592) or the [CachyOS Forum](https://discuss.cachyos.org/).
