@@ -74,21 +74,21 @@ are the most optimized for it. It also backs up your old `pacman.conf` for repos
    'https://mirror.cachyos.org/repo/x86_64/cachyos/cachyos-v4-mirrorlist-6-1-any.pkg.tar.zst' \
    'https://mirror.cachyos.org/repo/x86_64/cachyos/pacman-7.0.0.r6.gc685ae6-3-x86_64.pkg.tar.zst'
    ```
-3. Add the CachyOS repositories to the pacman config:
+3. Add the CachyOS repositories to the pacman config file:
    :::note
    These repositories should be put above Arch Linux Repositories.
    :::
 
    ```shell
    # /etc/pacman.conf
-   # If your CPU supports x86-64, then add only [cachyos] repositories
+   # If your CPU only supports x86-64, then add the [cachyos] repositories
    # cachyos repos
    [cachyos]
    Include = /etc/pacman.d/cachyos-mirrorlist
 
-   # if your CPU supports x86-64-v3, then add [cachyos-v3],[cachyos-core-v3],[cachyos-extra-v3] and [cachyos]
+   # If your CPU supports x86-64-v3, then add [cachyos-v3],[cachyos-core-v3],[cachyos-extra-v3] and [cachyos]
    # cachyos repos
-   # Only add if your CPU does v3 architecture
+
    [cachyos-v3]
    Include = /etc/pacman.d/cachyos-v3-mirrorlist
    [cachyos-core-v3]
@@ -98,9 +98,9 @@ are the most optimized for it. It also backs up your old `pacman.conf` for repos
    [cachyos]
    Include = /etc/pacman.d/cachyos-mirrorlist
 
-   # if your CPU supports x86-64-v4, then add [cachyos-v4], [cachyos-core-v4], [cachyos-extra-v4] and [cachyos]
+   # If your CPU supports x86-64-v4, then add [cachyos-v4], [cachyos-core-v4], [cachyos-extra-v4] and [cachyos]
    # cachyos repos
-   # Only add if your CPU does support x86-64-v4 architecture
+
    [cachyos-v4]
    Include = /etc/pacman.d/cachyos-v4-mirrorlist
    [cachyos-core-v4]
@@ -109,7 +109,30 @@ are the most optimized for it. It also backs up your old `pacman.conf` for repos
    Include = /etc/pacman.d/cachyos-v4-mirrorlist
    [cachyos]
    Include = /etc/pacman.d/cachyos-mirrorlist
+
+   # If your CPU is based on Zen 4 or Zen 5, add [cachyos-znver4], [cachyos-core-znver4], [cachyos-extra-znver4] and [cachyos]
+
+   [cachyos-znver4]
+   Include = /etc/pacman.d/cachyos-v4-mirrorlist
+   [cachyos-core-znver4]
+   Include = /etc/pacman.d/cachyos-v4-mirrorlist
+   [cachyos-extra-znver4]
+   Include = /etc/pacman.d/cachyos-v4-mirrorlist
+   [cachyos]
+   Include = /etc/pacman.d/cachyos-mirrorlist
    ```
+      :::tip
+   In order to make the transition from the `v4` repositories to the `znver4`
+
+   Add the corresponding entries from the previous step and execute the following commands:
+    ```sh
+    sudo pacman -Scc # Enter Y in both instances
+    sudo pacman -Sy
+    pacman -Qqn | sudo pacman -S - # To replace all the v4 packages with the znver4 packages
+    # Reboot your system
+    ```
+   :::
+
 4. Finally, update your system with CachyOS packages:
    ```sh
    sudo pacman -Syu
