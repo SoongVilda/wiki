@@ -172,6 +172,27 @@ In order to revert this change. **Remove** cachyos-kde-settings:
 sudo pacman -R cachyos-kde-settings
 ```
 
+### NVIDIA GSP Firmware
+
+The NVIDIA GSP Firmware can **"in some cases"** lead to decreased performance. While the 555.58.02 NVIDIA Driver has largely addressed this issue, it may persist on certain systems.
+If you are facing hiccups in KDE or bad performance in some cases, you can disable the GSP Firmware with the following config file:
+`/etc/modprobe.d/nvidia-gsp.conf`
+
+```text
+options nvidia NVreg_EnableGpuFirmware=0
+```
+
+After creating the file, execute the following command:
+```sh
+sudo mkinitcpio -P
+```
+
+:::note
+NVIDIA's [open kernel modules](https://github.com/NVIDIA/open-gpu-kernel-modules) are based on GSP firmware. Due to this, GSP cannot be disabled and this modprobe option will be ignored when using them. Use `linux-cachyos-nvidia` or `nvidia-dkms`.
+:::
+
+It's generally recommended to test the GSP firmware after each new NVIDIA driver installation, as it often introduces beneficial features. Moreover, NVIDIA primarily started conducting QA testing using the GSP firmware.
+
 ## Audio Improvements
 
 ### Granting Realtime Privileges for the User
