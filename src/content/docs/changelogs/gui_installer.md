@@ -2,6 +2,29 @@
 title: GUI Installer Changelogs
 description: Changelogs of Calamares and the GUI Live ISO
 ---
+25.03
+----
+
+**Features**:
+- **Bootloader**: Added support for Limine bootloader
+- **Bootloader**: Added support for automatic snapshots for Limine bootloader
+- **Samba**: Added "cachyos-samba-settings" package to easily set up a Samba mount
+- **NVIDIA**: Re-enabled GSP Firmware for the closed source NVIDIA module
+- **Kernel**: Added support for the Asus Armoury driver
+- **Secure Boot**: Improved "sbctl-batch-sign" script to sign only wanted files
+- **udev**: Reverted using ntfs3 as the default driver for NTFS partitions
+  - Info: Using the NTFS3 Kernel driver as default resulted in issues for some users. Therefore, we reverted it again.
+- **wine**: Wine and Wine-Staging defaulting now to WoW64 and NTSync
+- **scx-manager**: Moved out sched-ext GUI manager from Kernel Manager to its own application
+- **Hardware Support**: Added support for RDNA4, RTX 5070 Ti, and 5070.
+- **Settings**: Added DLSS Swapper Support - this is a script, which automatically updates and uses the latest dlss version and preset
+- **Package Updates**: linux-cachyos 6.14.0, NVIDIA 570.133.07, Gnome 48, Plasma 6.3.3, mesa 25.0.2, linux-api-headers 6.14.0, linux-tools 6.14.0
+
+**Fixes**:
+- **initcpiocfg**: Removed "crc32c-intel" module adding to mkinitcpio - This has been deprecated and now defaults to the "crc32c" module
+- **chwd**: T2 MacBook disable offloading the brcmfmac
+- **chwd**: Do not install NVIDIA 390.xx driver for laptops
+
 25.02
 ----
 
