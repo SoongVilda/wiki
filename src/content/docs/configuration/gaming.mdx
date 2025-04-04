@@ -81,10 +81,6 @@ To check if your game is compatible or how does it run with Linux, visit [proton
 - `Proton 9.0.3 or lower` Stable releases from `Valve`. If the game you want to play only works in a previous Proton release.
 - `Proton-GE` Build made by [GloriousEggroll](https://github.com/GloriousEggroll/proton-ge-custom) in some cases it comes in handy.
 
-### What is proton-cachyos?
-
-Check out this [explanation about it.](/configuration/gaming#proton-cachyos)
-
 ### How to properly set multiple launch options
 The launch options in Steam are constructed using the following pattern
 - `<env variables> <wrappers> %command% <application arguments>`
@@ -127,7 +123,7 @@ The previously used power profile will be restored once the game is closed.
 *[Feral's GameMode](https://github.com/FeralInteractive/gamemode)
 has similar a behavior but it should not be used as CachyOS already ships with [`ananicy-cpp`](https://gitlab.com/ananicy-cpp/ananicy-cpp)*
 
-### How to add game-performance to Steam, Lutris, Heroic Games Launcher
+### How to add game-performance to Steam, Lutris and Heroic Games Launcher
 
 <Tabs>
 
@@ -198,6 +194,77 @@ If you encounter issues with games using **Easy Anti-Cheat** (EAC) or **BattlEye
 - `PROTON_NO_WM_DECORATION=1`: Disables window decorations using the Linux window manager. It can fix issues with **borderless fullscreen** and the mouse clicking through the window.
 - `PROTON_PREFER_SDL_INPUT=1`: Enable to work-around issues with proper controller detection.
 
+### umu-launcher Setup
+
+:::note
+Make sure you have umu-launcher from CachyOS installed in your system. Install it with the following command:
+`sudo pacman -S cachyos/umu-launcher`
+:::
+
+<Tabs>
+    <TabItem label='Lutris Global'>
+    <Steps>
+    1. In the main screen of Lutris, click on the `cogwheel` at the right of **Wine**
+    2. Do the following changes in the **Runner Options** tab
+        - **Wine version** = `proton-cachyos`
+        - **Use System winetricks** = *Disabled*
+        - **Graphics**
+            - **Enable DXVK** = `Enabled`
+            - **Enable VKD3D** = `Enabled`
+            - **Enable D3D Extras** = `Enabled`
+            - **Enable DXVK-NVAPI / DLSS** = `Enabled`
+            - User-defined versions of **DXVK**, **VKD3D** and **DXVK-NVAPI** are not applied when using `umu-launcher`
+    3. Go to the **System options** tab
+        - **Lutris**
+            - **Disable Lutris Runtime** = `Enabled`
+            - **Prefer system libraries** = `Enabled`
+    4. Scroll down to **Game execution** and look for the **Environment variables** table
+    5. Add the following environment variables:
+        - **Key**: `UMU_NO_RUNTIME`
+            - **Value**: `1` *use system libraries instead of the steam runtime, only for proton-cachyos*
+        - **Key**: `UMU_RUNTIME_UPDATE` *optional*
+            - **Value**: `0` *skips Steam Linux Runtime updates for `proton-cachyos`*
+        - **Key**: `PROTON_VERB` *optional*
+            - **Value**: `waitforexitandrun` *allows protonfixes to work with a corresponding `GAMEID`*
+    6. Save changes.
+    </Steps>
+    </TabItem>
+    <TabItem label='Lutris Per Game'>
+    <Steps>
+    1. Right Click in the game you want to configure, then click on **Configure**
+    2. Do the following changes in the **Runner Options** tab
+        - **Wine version** = `proton-cachyos`
+        - **Use System winetricks** = *Disabled*
+        - **Graphics**
+            - **Enable DXVK** = `Enabled`
+            - **Enable VKD3D** = `Enabled`
+            - **Enable D3D Extras** = `Enabled`
+            - **Enable DXVK-NVAPI / DLSS** = `Enabled`
+            - User-defined versions of **DXVK**, **VKD3D** and **DXVK-NVAPI** are not applied when using `umu-launcher`
+    3. Go to the **System options** tab
+        - **Lutris**
+            - **Disable Lutris Runtime** = `Enabled`
+            - **Prefer system libraries** = `Enabled`
+    4. Scroll down to **Game execution** and look for the **Environment variables** table
+    5. Add the following environment variables:
+        - **Key**: `UMU_NO_RUNTIME`
+            - **Value**: `1` *if you are using umu-launcher `1.1.4` from CachyOS*
+        - **Key**: `UMU_RUNTIME_UPDATE` *optional*
+            - **Value**: `0` *skips Steam Linux Runtime updates for `proton-cachyos`*
+        - **Key**: `PROTON_VERB` *optional*
+            - **Value**: `waitforexitandrun` *allows protonfixes to work with a corresponding `GAMEID`*
+    6. Save changes.
+    </Steps>
+    </TabItem>
+    <TabItem label='Heroic Games Launcher'>
+        <Steps>
+            1. Click on the `Configure` button next to the `Play Now` button in the game you want to run.
+            2. In the `WINE` tab. Set the Wine Version to `Proton - proton-cachyos`.
+            3. Go to `Advanced`. Scroll down to `Environment variables`
+            4. Add `UMU_NO_RUNTIME` in the Variable name with a value of `1` and click on the plus sign.
+        </Steps>
+    </TabItem>
+</Tabs>
 
 ## Wine-CachyOS
 
@@ -223,21 +290,43 @@ If you want to use desktop application, we suggest using `wine` or `wine-staging
 - `WINE_NO_WM_DECORATION=1`: Disables window decorations using the Linux window manager. It can fix issues with **borderless fullscreen** and the mouse clicking through the window.
 - `WINE_PREFER_SDL_INPUT=1`: Enable to work-around issues with proper controller detection.
 
+### How to use wine-cachyos-opt
 
-### How to setup `wine-cachyos-opt`
-Normally running `/opt/wine-cachyos/bin/wine` instead of just `wine` should be enough for an application to run using `wine-cachyos-opt`.
+<Tabs>
+    <TabItem label='Standalone'>
+    Normally running `/opt/wine-cachyos/bin/wine` instead of just `wine` should be enough for an application to run using `wine-cachyos-opt`.
 
-If a more strict configuration is required, it could look like this
-```shell
-export PATH="/opt/wine-cachyos/bin/:$PATH"
-export WINEDLLPATH="/opt/wine-cachyos/lib/wine:/opt/wine-cachyos/lib32/wine:$WINEDLLPATH"
-export LD_LIBRARY_PATH="/opt/wine-cachyos/lib/:/opt/wine-cachyos/lib32/:$LD_LIBRARY_PATH"
-```
+    If a more strict configuration is required, it could look like this
+    ```shell
+    export PATH="/opt/wine-cachyos/bin/:$PATH"
+    export WINEDLLPATH="/opt/wine-cachyos/lib/wine:/opt/wine-cachyos/lib32/wine:$WINEDLLPATH"
+    export LD_LIBRARY_PATH="/opt/wine-cachyos/lib/:/opt/wine-cachyos/lib32/:$LD_LIBRARY_PATH"
+    ```
 
-If you want to use `winetricks` with `wine-cachyos-opt` you can invoke it like this
-```shell
-WINE=/opt/wine-cachyos/bin/wine WINEPRFIX=<your prefix> winetricks <verb>
-```
+    If you want to use `winetricks` with `wine-cachyos-opt` you can invoke it like this
+    ```shell
+    WINE=/opt/wine-cachyos/bin/wine WINEPRFIX=<your prefix> winetricks <verb>
+    ```
+    </TabItem>
+    <TabItem label='Lutris'>
+      :::note
+      The second image also applies for setting it up per game.
+      :::
+      <MultipleImageComponent
+      images={[
+      import('~/assets/images/lutris-guide-1.png'),
+      import('~/assets/images/lutris-guide-2.png')]}
+      />
+    </TabItem>
+    <TabItem label='Heroic Games Launcher'>
+      <MultipleImageComponent
+      images={[
+      import('~/assets/images/heroic-wine.png'),
+      import('~/assets/images/heroic-wine-2.png'),
+      import('~/assets/images/heroic-wine-3.png')]}
+      />
+    </TabItem>
+</Tabs>
 
 ## Bottles
 
@@ -273,94 +362,9 @@ With Lutris, you can efficiently manage your game runners, including Wine, Proto
 - [Steam](https://lutris.net/games/steam/)
 - [Ubisoft Connect](https://lutris.net/games/ubisoft-connect/)
 
-### Setting up wine-cachyos-opt
-
-<br />
-<MultipleImageComponent
-  images={[
-    import('~/assets/images/lutris-guide-1.png'),
-    import('~/assets/images/lutris-guide-2.png')]}
-/>
-
-## Lutris FAQ
-
-### How can I add a parameter to a game?
+### Adding a parameter to a game
 
 - Right-click on the game icon > `Configure` > `Game options` > `Arguments` > Add any argument you need.
-
-### How can I setup umu-launcher with proton-cachyos in Lutris?
-
-:::tip
-Make sure you have umu-launcher installed in your system. Install it with the following command:
-`sudo pacman -S umu-launcher`
-:::
-
-    <Tabs>
-
-    <TabItem label="Global (affects all Games)">
-
-    <Steps>
-
-    1. In the main screen of Lutris, click on the `cogwheel` at the right of **Wine**
-    2. Do the following changes in the **Runner Options** tab
-        - **Wine version** = `proton-cachyos`
-        - **Use System winetricks** = *Disabled*
-        - **Graphics**
-            - **Enable DXVK** = `Enabled`
-            - **Enable VKD3D** = `Enabled`
-            - **Enable D3D Extras** = `Enabled`
-            - **Enable DXVK-NVAPI / DLSS** = `Enabled`
-            - User-defined versions of **DXVK**, **VKD3D** and **DXVK-NVAPI** are not applied when using `umu-launcher`
-    3. Go to the **System options** tab
-        - **Lutris**
-            - **Disable Lutris Runtime** = `Enabled`
-            - **Prefer system libraries** = `Enabled`
-    4. Scroll down to **Game execution** and look for the **Environment variables** table
-    5. Add the following environment variables:
-        - **Key**: `UMU_NO_RUNTIME`
-            - **Value**: `1` *use system libraries instead of the steam runtime, only for proton-cachyos*
-        - **Key**: `UMU_RUNTIME_UPDATE` *optional*
-            - **Value**: `0` *skips Steam Linux Runtime updates for `proton-cachyos`*
-        - **Key**: `PROTON_VERB` *optional*
-            - **Value**: `waitforexitandrun` *allows protonfixes to work with a corresponding `GAMEID`*
-    6. Save changes.
-
-    </Steps>
-
-    </TabItem>
-
-    <TabItem label="Per game (preferred)">
-
-    <Steps>
-
-    1. Right Click in the game you want to configure, then click on **Configure**
-    2. Do the following changes in the **Runner Options** tab
-        - **Wine version** = `proton-cachyos`
-        - **Use System winetricks** = *Disabled*
-        - **Graphics**
-            - **Enable DXVK** = `Enabled`
-            - **Enable VKD3D** = `Enabled`
-            - **Enable D3D Extras** = `Enabled`
-            - **Enable DXVK-NVAPI / DLSS** = `Enabled`
-            - User-defined versions of **DXVK**, **VKD3D** and **DXVK-NVAPI** are not applied when using `umu-launcher`
-    3. Go to the **System options** tab
-        - **Lutris**
-            - **Disable Lutris Runtime** = `Enabled`
-            - **Prefer system libraries** = `Enabled`
-    4. Scroll down to **Game execution** and look for the **Environment variables** table
-    5. Add the following environment variables:
-        - **Key**: `UMU_NO_RUNTIME`
-            - **Value**: `1` *if you are using umu-launcher `1.1.4` from CachyOS*
-        - **Key**: `UMU_RUNTIME_UPDATE` *optional*
-            - **Value**: `0` *skips Steam Linux Runtime updates for `proton-cachyos`*
-        - **Key**: `PROTON_VERB` *optional*
-            - **Value**: `waitforexitandrun` *allows protonfixes to work with a corresponding `GAMEID`*
-    6. Save changes.
-    </Steps>
-
-    </TabItem>
-
-    </Tabs>
 
 ## Ray tracing Support
 The Arch Wiki has already provides comprehensive instructions on how to enable [ray tracing](https://wiki.archlinux.org/title/Hardware_raytracing) for various hardware platforms.
