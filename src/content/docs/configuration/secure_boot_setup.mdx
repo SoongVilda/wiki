@@ -119,15 +119,15 @@ pacman hook will **not** sign the updated EFI binaries. As a workaround, we can 
 ### Limine
 
 Limine is a special boot manager that allows for checking the hash of kernel
-images and other files that Limine uses during boot. This means that any sort of
-manual configuration done by the user, e.g. signing the image via
+images and other files that Limine uses during boot. If this is enabled, any
+sort of manual configuration done by the user, e.g. signing the image via
 `sbctl-batch-sign`, will modify the hash of the corresponding files and will
 fail Limine's checksum verification.
 
-However, this is not a problem for Limine because it has a special boot process
-that bypasses EFI chainloading and signature checks. The only EFI binaries that
-need to be signed are Limine itself and the backup EFI binary found in all UEFI
-systems.
+However, signing these files isn't necessary on Limine because it has a special
+boot process that bypasses EFI chainloading and signature checks. The only EFI
+binaries that need to be signed are Limine itself and the backup EFI binary
+found in all UEFI systems.
 
 ```sh
 # Use limine-enroll-config to sign Limine's EFI binary
