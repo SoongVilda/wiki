@@ -2,6 +2,23 @@
 title: GUI Installer Changelogs
 description: Changelogs of Calamares and the GUI Live ISO
 ---
+25.04
+----
+
+**Features:**
+- **occt**: Added OCCT to the ISO to have a live environment for stress testing
+  - Thanks to Marek for providing this idea!
+
+**Fixes:**
+- **kernel**: Fixes module crash on Asus laptops
+- **limine**: Limine now has mkinitcpio-limine-hook installed and will automatically create bootloader entries
+
+
+**Changelog for Handheld Edition:**
+- **audio**: Added audio profiles for ROG Ally X and Legion Go
+- **gamescope**: Replaced gamescope-plus with upstream gamescope
+
+
 25.03
 ----
 
