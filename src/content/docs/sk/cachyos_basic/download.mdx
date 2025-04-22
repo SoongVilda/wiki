@@ -19,9 +19,9 @@ ISO obraz CachyOS je možné získať z nasledujúcich zdrojov:
 Vždy urobte krok navyše na overenie integrity ISO obrazu, aby ste predišli akýmkoľvek nežiaducim problémom pri inštalácii alebo pri vytváraní bootovacieho média.
 :::
 
-**Aktuálna verzia ISO:** `241221`
+**Aktuálna verzia ISO:** `250422`
 
-**SHA256 Hash:** `6b6562602705da3228d9862d7016a00ca6fa482482b87fd15656f9b2793f4ef6`
+**SHA256 Hash:** `c87272fc0e8476ea187005d416fa0ee7630a50c71c097233960a0fee22cb8bfe`
 
 <Tabs>
 
@@ -29,12 +29,12 @@ Vždy urobte krok navyše na overenie integrity ISO obrazu, aby ste predišli ak
 
 <Steps>
 
-1. Stiahnite si [súbor](https://mirror.cachyos.org/ISO/desktop/241221/cachyos-desktop-linux-241221.iso.sha256) obsahujúci SHA256 hash **(Otvorte ho pomocou textového editora, napr.: Poznámkový blok).**
+1. Stiahnite si [súbor](https://mirror.cachyos.org/ISO/desktop/250422/cachyos-desktop-linux-250422.iso.sha256) obsahujúci SHA256 hash **(Otvorte ho pomocou textového editora, napr.: Poznámkový blok).**
 2. Otvorte CMD alebo PowerShell ako správca a [prejdite](<https://www.wikihow.com/Change-Directories-in-Command-Prompt>) do cesty, kde sú uložené ISO a SHA256 súbory.
 3. Spustite nasledujúci príkaz:
    ```powershell
    # Príklad:
-   certUtil -hashfile cachyos-desktop-linux-241221.iso SHA256
+   certUtil -hashfile cachyos-desktop-linux-250422.iso SHA256
    ```
 4. Porovnajte výstup hashu certUtil s hashom zo stiahnutého súboru v **Kroku 1.** Ak sa zhodujú, môžete pokračovať v inštalácii CachyOS.
 
@@ -46,18 +46,18 @@ Vždy urobte krok navyše na overenie integrity ISO obrazu, aby ste predišli ak
 
 <Steps>
 
-1. Stiahnite si [súbor](https://mirror.cachyos.org/ISO/desktop/241221/cachyos-desktop-linux-241221.iso.sha256) obsahujúci SHA256 hash.
+1. Stiahnite si [súbor](https://mirror.cachyos.org/ISO/desktop/250422/cachyos-desktop-linux-250422.iso.sha256) obsahujúci SHA256 hash.
 2. Otvorte terminál a prejdite do adresára obsahujúceho súbor `.sha256` a spustite nasledujúce príkazy:
    ```sh
    # Príklad:
    cd Downloads/
-   cat cachyos-desktop-linux-241221.iso.sha256
-   # 6b6562602705da3228d9862d7016a00ca6fa482482b87fd15656f9b2793f4ef6
+   cat cachyos-desktop-linux-250422.iso.sha256
+   # c87272fc0e8476ea187005d416fa0ee7630a50c71c097233960a0fee22cb8bfe
    ```
 3. Porovnajte výstup z **Kroku 2** a spustite nasledujúci príkaz na kontrolu aktuálneho hashu v ISO súbore.
    ```sh
    # Príklad:
-   sha256sum cachyos-desktop-linux-241221.iso
+   sha256sum cachyos-desktop-linux-250422.iso
    ```
 4. Ak sa hashe z **Kroku 2** a **Kroku 3** zhodujú, môžete pokračovať v inštalácii CachyOS.
 
@@ -69,18 +69,18 @@ Vždy urobte krok navyše na overenie integrity ISO obrazu, aby ste predišli ak
 
 <Steps>
 
-1. Stiahnite si [súbor](https://mirror.cachyos.org/ISO/desktop/241221/cachyos-desktop-linux-241221.iso.sha256) obsahujúci SHA256 hash.
+1. Stiahnite si [súbor](https://mirror.cachyos.org/ISO/desktop/250422/cachyos-desktop-linux-250422.iso.sha256) obsahujúci SHA256 hash.
 2. Otvorte terminál a prejdite do adresára obsahujúceho súbor `.sha256` a spustite nasledujúce príkazy:
    ```sh
    # Príklad:
    cd Downloads/
-   cat cachyos-desktop-linux-241221.iso.sha256
-   # 6b6562602705da3228d9862d7016a00ca6fa482482b87fd15656f9b2793f4ef6
+   cat cachyos-desktop-linux-250422.iso.sha256
+   # c87272fc0e8476ea187005d416fa0ee7630a50c71c097233960a0fee22cb8bfe
    ```
 3. Porovnajte výstup z **Kroku 2** a spustite nasledujúci príkaz na kontrolu aktuálneho hashu v ISO súbore.
    ```sh
    # Príklad:
-   shasum -a 256 cachyos-desktop-linux-241221.iso
+   shasum -a 256 cachyos-desktop-linux-250422.iso
    ```
 4. Ak sa hashe z **Kroku 2** a **Kroku 3** zhodujú, môžete pokračovať v inštalácii CachyOS.
 
