@@ -132,9 +132,9 @@ Tabuľka partícií sa pre jednotlivých správcov zavádzania líši. Postupujt
 
 ### MBR/BIOS
 
-:::note
-GRUB je jediný správca zavádzania dostupný pre systém MBR/BIOS.
-:::
+<Tabs>
+
+<TabItem label='GRUB'>
 
 <Steps>
 
@@ -163,6 +163,48 @@ GRUB je jediný správca zavádzania dostupný pre systém MBR/BIOS.
 10. Starostlivo si prezrite súhrn inštalácie na Stránke s prehľadom. Ak sú pre vás všetky nastavenia správne, pokračujte v inštalácii kliknutím na ***Install Now***. V opačnom prípade sa vráťte a vykonajte potrebné zmeny.
 
 </Steps>
+
+</TabItem>
+
+<TabItem label='Limine'>
+
+<Steps>
+
+1. Zavedte systém z ISO a kliknite na tlačidlo **Launch Installer**.
+
+2. Nastavte preferovaný **Jazyk** a **Región/Časové pásmo**.
+
+3. Nakonfigurujte **Rozloženie klávesnice**.
+
+4. Vyberte **Manuálne rozdelenie disku**.
+
+5. Vytvorte novú partíciu s nasledujúcimi parametrami:
+    * Veľkosť: ***Minimálne 1000MiB***
+    * Filesystem: ***FAT32***
+    * Prípojný bod: ***/boot***
+    * Flags: **boot**
+
+6. Vytvorte ďalšiu partíciu pre ***root***:
+    * Veľkosť: ***Minimálne 20000MiB***
+    * Filesystem: Akýkoľvek, pozrite si [Filesystem](/installation/filesystem)
+    * Prípojný bod: ***/***
+    * Flags:
+
+7. Skontrolujte, či ***Inštalovať boot loader na:*** smeruje na váš zavádzací disk, napr.: /dev/sda
+
+8. Vyberte **Desktopové prostredie**, ktoré chcete používať, pozrite si [Desktopové prostredia](/installation/desktop_environments).
+
+9. Vyberte špecifické balíčky, ktoré chcete nainštalovať z poskytnutého zoznamu, a odznačte všetky, ktoré nepotrebujete.
+
+10. Nastavte svoje prihlasovacie údaje.
+
+11. Starostlivo si prezrite súhrn inštalácie na Stránke s prehľadom. Ak sú pre vás všetky nastavenia správne, pokračujte v inštalácii kliknutím na ***Install Now***. V opačnom prípade sa vráťte a vykonajte potrebné zmeny.
+
+</Steps>
+
+</TabItem>
+
+</Tabs>
 
 ## Duálne zavedenie
 

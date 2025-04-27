@@ -132,9 +132,9 @@ Die Partitionstabelle für jeden Bootmanager variiert. Bitte befolge die korrekt
 
 ### MBR/BIOS
 
-:::note
-GRUB ist der einzige Bootmanager, der für ein MBR/BIOS-System verfügbar ist.
-:::
+<Tabs>
+
+<TabItem label='GRUB'>
 
 <Steps>
 
@@ -163,6 +163,48 @@ GRUB ist der einzige Bootmanager, der für ein MBR/BIOS-System verfügbar ist.
 10. Überprüfe die Installationszusammenfassung auf der Übersichtsseite sorgfältig. Wenn alle Einstellungen für dich korrekt aussehen, fahre mit der Installation fort, indem du auf ***Jetzt installieren*** klickst. Andernfalls gehe zurück und nimm alle notwendigen Änderungen vor.
 
 </Steps>
+
+</TabItem>
+
+<TabItem label='Limine'>
+
+<Steps>
+
+1. Boote in die ISO und klicke auf die Schaltfläche **Installationsprogramm starten**.
+
+2. Stelle deine bevorzugte **Sprache** und **Region/Zeitzone** ein.
+
+3. Konfiguriere dein **Tastaturlayout**.
+
+4. Wähle **Manuelle Partitionierung**.
+
+5. Erstelle eine neue Partition mit Folgendem:
+    * Größe: ***Mindestens 1000MiB***
+    * Dateisystem: ***FAT32***
+    * Mountpunkt: ***/boot***
+    * Flags: **boot**
+
+6. Erstelle eine weitere Partition für ***root***:
+    * Größe: ***Mindestens 20000MiB***
+    * Dateisystem: Beliebig, siehe [Dateisystem](/de/installation/filesystem)
+    * Mountpunkt: ***/***
+    * Flags:
+
+7. Überprüfe, ob ***Bootloader installieren auf:*** auf dein Bootlaufwerk zeigt, z. B.: /dev/sda
+
+8. Wähle die **Desktop-Umgebung** aus, die du verwenden möchtest, siehe [Desktop-Umgebungen](/de/installation/desktop_environments).
+
+9. Wähle die spezifischen Pakete aus, die du aus der bereitgestellten Liste installieren möchtest, und deaktiviere alle, die du nicht benötigst.
+
+10. Richte deine Anmeldeinformationen ein.
+
+11. Überprüfe die Installationszusammenfassung auf der Übersichtsseite sorgfältig. Wenn alle Einstellungen für dich korrekt aussehen, fahre mit der Installation fort, indem du auf ***Jetzt installieren*** klickst. Andernfalls gehe zurück und nimm alle notwendigen Änderungen vor.
+
+</Steps>
+
+</TabItem>
+
+</Tabs>
 
 ## Dual-Boot
 

@@ -132,9 +132,9 @@ Tablica partycji różni się w zależności od menedżera rozruchu. Postępuj z
 
 ### MBR/BIOS
 
-:::note
-GRUB jest jedynym dostępnym menedżerem rozruchu dla systemu MBR/BIOS.
-:::
+<Tabs>
+
+<TabItem label='GRUB'>
 
 <Steps>
 
@@ -163,6 +163,48 @@ GRUB jest jedynym dostępnym menedżerem rozruchu dla systemu MBR/BIOS.
 10. Dokładnie przejrzyj podsumowanie instalacji na stronie Przegląd. Jeśli wszystkie ustawienia wyglądają dla ciebie poprawnie, kontynuuj instalację, klikając ***Zainstaluj teraz***. W przeciwnym razie wróć i wprowadź niezbędne zmiany.
 
 </Steps>
+
+</TabItem>
+
+<TabItem label='Limine'>
+
+<Steps>
+
+1. Uruchom system z obrazu ISO i kliknij przycisk **Uruchom instalator**.
+
+2. Ustaw preferowany **Język** oraz **Region/Strefę czasową**.
+
+3. Skonfiguruj **Układ klawiatury**.
+
+4. Wybierz **Ręczne partycjonowanie**.
+
+5. Utwórz nową partycję z następującymi ustawieniami:
+    * Rozmiar: ***Co najmniej 1000MiB***
+    * System plików: ***FAT32***
+    * Punkt montowania: ***/boot***
+    * Flagi: **boot**
+
+6. Utwórz kolejną partycję dla ***systemu głównego (root)***:
+    * Rozmiar: ***Co najmniej 20000MiB***
+    * System plików: Dowolny, zobacz [System plików](/pl/installation/filesystem)
+    * Punkt montowania: ***/***
+    * Flagi:
+
+7. Sprawdź dokładnie, czy opcja ***Zainstaluj program rozruchowy na:*** wskazuje na twój dysk rozruchowy, np. /dev/sda
+
+8. Wybierz **Środowisko graficzne**, którego chcesz używać, zobacz [Środowiska graficzne](/pl/installation/desktop_environments).
+
+9. Wybierz konkretne pakiety, które chcesz zainstalować z podanej listy, i odznacz te, których nie potrzebujesz.
+
+10. Ustaw swoje dane logowania.
+
+11. Dokładnie przejrzyj podsumowanie instalacji na stronie Przegląd. Jeśli wszystkie ustawienia wyglądają dla ciebie poprawnie, kontynuuj instalację, klikając ***Zainstaluj teraz***. W przeciwnym razie wróć i wprowadź niezbędne zmiany.
+
+</Steps>
+
+</TabItem>
+
+</Tabs>
 
 ## Dual Boot / Podwójne uruchamianie
 

@@ -132,9 +132,9 @@ Tabulka oddílů se u jednotlivých správců bootování liší. Postupujte pod
 
 ### MBR/BIOS
 
-:::note
-Pro systém MBR/BIOS je dostupný pouze správce bootování GRUB.
-:::
+<Tabs>
+
+<TabItem label='GRUB'>
 
 <Steps>
 
@@ -163,6 +163,48 @@ Pro systém MBR/BIOS je dostupný pouze správce bootování GRUB.
 10. Pečlivě zkontrolujte přehled instalace na stránce Přehled. Pokud je vše v pořádku, pokračujte kliknutím na ***Nainstalovat nyní***. V opačném případě se vraťte a proveďte potřebné změny.
 
 </Steps>
+
+</TabItem>
+
+<TabItem label='Limine'>
+
+<Steps>
+
+1. Nabootujte do ISO a klikněte na **Spustit instalátor**.
+
+2. Nastavte preferovaný **Jazyk** a **Oblast/Časovou zónu**.
+
+3. Nakonfigurujte **Rozložení klávesnice**.
+
+4. Vyberte **Ruční rozdělení disku**.
+
+5. Vytvořte nový oddíl s následujícími parametry:
+    * Velikost: ***Nejméně 1000MiB***
+    * Systém souborů: ***FAT32***
+    * Připojovací bod: ***/boot***
+    * Příznaky: **boot**
+
+6. Vytvořte další oddíl pro ***root***:
+    * Velikost: ***Nejméně 20000MiB***
+    * Systém souborů: libovolný, viz [Systém souborů](/installation/filesystem)
+    * Připojovací bod: ***/***
+    * Příznaky:
+
+7. Dvojitě zkontrolujte, že ***Instalovat boot loader na:*** směřuje na váš boot disk např.: /dev/sda.
+
+8. Vyberte preferované **Desktopové prostředí**, viz [Desktopová prostředí](/installation/desktop_environments).
+
+9. Vyberte konkrétní balíčky, které chcete nainstalovat, a zrušte výběr těch, které nepotřebujete.
+
+10. Nastavte přihlašovací údaje.
+
+11. Pečlivě zkontrolujte přehled instalace na stránce Přehled. Pokud je vše v pořádku, pokračujte kliknutím na ***Nainstalovat nyní***. V opačném případě se vraťte a proveďte potřebné změny.
+
+</Steps>
+
+</TabItem>
+
+</Tabs>
 
 ## Dual Boot
 
