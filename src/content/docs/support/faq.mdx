@@ -115,6 +115,31 @@ sudo pacman -Syu
 # Then try to install the package you want again.
 ```
 
+### Mirror issues
+
+#### Slow package downloads or connection errors
+
+```text
+# Example errors:
+error: failed retrieving file '...' from ... : Connection timed out
+error: failed retrieving file '...' from ... : Couldn't resolve host name  
+error: failed retrieving file '...' from ... : The requested URL returned error: 526
+```
+
+These errors typically indicate issues with your current mirrors - they might be slow, unreachable, or having temporary problems.
+
+```sh title='Run the following command to get faster and more reliable mirrors:'
+sudo cachyos-rate-mirrors
+# Afterwards you can update your system with:
+sudo pacman -Syu
+```
+
+:::tip
+The `cachyos-rate-mirrors` command tests available CachyOS mirrors based on speed and synchronization status, then updates your mirror list file (`/etc/pacman.d/cachyos-mirrorlist`) with the best-performing ones.
+
+Consider running it periodically, especially if you notice slowdowns during system updates.
+:::
+
 ### What does -bin means at the end of a package name? For example librewolf-bin
 
 This means that you're downloading/installing a prebuilt package therefore you don't need to compile or build it.
