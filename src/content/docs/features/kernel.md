@@ -31,6 +31,7 @@ is built  with [clang](https://clang.llvm.org/) instead of [GCC](https://gcc.gnu
 built with [ThinLTO](https://blog.llvm.org/2016/06/thinlto-scalable-and-incremental-lto.html) by default and therefore has corresponding `-gcc` kernel variants instead.
 
 - **linux-cachyos**
+    - 1000Hz tickrate for improved responsiveness.
     - Default kernel. This is the recommended kernel if you're unsure about which kernel should be used.
     - Uses the [BORE](https://github.com/firelzrd/bore-scheduler) scheduler.
     - Built with clang and ThinLTO by default to produce more optimized binaries.
