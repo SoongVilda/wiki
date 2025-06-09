@@ -130,12 +130,12 @@ binaries that need to be signed are Limine itself and the backup EFI binary
 found in all UEFI systems.
 
 ```sh
+# Sign the special EFI binary
+❯ sudo sbctl sign -s /boot/EFI/BOOT/BOOTX64.EFI
+
 # Use limine-enroll-config to sign Limine's EFI binary
 # This uses sbctl under the hood
 ❯ sudo limine-enroll-config
-
-# Sign the special EFI binary
-❯ sudo sbctl sign -s /boot/EFI/BOOT/BOOTX64.EFI
 ```
 
 ## Verify that Secure Boot is Enabled
