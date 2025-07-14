@@ -103,10 +103,19 @@ In order to achieve this, the Kernel Manager uses the `scx_loader` with a config
 
 |   Profile Name  	|  Command-line Flags  	|                                                         Description                                                         	|
 |:---------------:	|:--------------------:	|:---------------------------------------------------------------------------------------------------------------------------:	|
-| **Low Latency** 	| `-k -s 5000 -l 5000` 	| Meant to lower latency at the cost of throughput. Suitable for real-time applications like Audio Processing and Multimedia. 	|
+| **Low Latency** 	| `-s 5000 -S 500 -l 5000 -m performance` 	| Meant to lower latency at the cost of throughput. Suitable for real-time applications like Audio Processing and Multimedia. 	|
 | **Gaming**      	| `-m performance`  	| Optimizes for high performance in games. Prioritizes P-cores over E-cores on Intel CPUs and CCDs on Ryzen X3D CPUs.         	|
 | **Power Save**  	| `-m powersave`       	| Prioritizes power efficiency. Favors less performant cores (e.g E-cores on Intel).                                          	|
-| **Server**        | `-c 0`                | Disables the interactive task classification in Bpfland making more capable for a server, an increase of approximately 2-3% in server workloads is expected
+| **Server**        | `-p`                | Disables the interactive task classification in Bpfland making more capable for a server, an increase of approximately 2-3% in server workloads is expected
+
+#### Flash
+
+   Profile Name     |  Command-line Flags   |                                                         Description                                                           |
+|:---------------:  |:--------------------: |:---------------------------------------------------------------------------------------------------------------------------:  |
+| **Low Latency**   | `-m performance -w -C 0`   | Meant to lower latency at the cost of throughput. Suitable for real-time applications like Audio Processing and Multimedia.   |
+| **Gaming**        | `-m all`      | Optimizes for high performance in games. Prioritizes P-cores over E-cores on Intel CPUs and CCDs on Ryzen X3D CPUs.           |
+| **Power Save**    | `-m powersave -I 10000 -t 10000 -s 10000 -S 1000`        | Prioritizes power efficiency. Favors less performant cores (e.g E-cores on Intel).                                            |
+| **Server**        | `-m all -s 20000 -S 1000 -I -1 -D -L`                | Tuned for server workloads. Trades responsiveness for throughput .
 
 #### LAVD
 
@@ -114,3 +123,19 @@ In order to achieve this, the Kernel Manager uses the `scx_loader` with a config
 |:------------------------:	|:------------------:	|:----------------------------------------------------------------------------------------------------------------------------------:	|
 | **Gaming & Low Latency** 	|   `--performance`  	| Maximizes performance by using all available cores, prioritizing physical cores.                                                   	|
 |      **Power save**      	|    `--powersave`   	| Minimizes power consumption while maintaining reasonable performance. Prioritizes efficient cores and threads over physical cores. 	|
+
+#### P2DQ
+
+|       Profile Name        | Command-line Flags    |                                                             Description                                                               |
+|:------------------------: |:------------------:   |:----------------------------------------------------------------------------------------------------------------------------------:   |
+| **Low Latency**  |   `-y`     | Lowers latency by making interactive tasks stick more the CPU they were assigned to.                                                     |
+|      **Server**       |    `--keep-running`      | Improves server workloads by allowing tasks to run beyond their slice if the CPU is idle.    |
+
+#### Tickless
+
+|   Profile Name    |  Command-line Flags   |                                                         Description                                                           |
+|:---------------:  |:--------------------: |:---------------------------------------------------------------------------------------------------------------------------:  |
+| **Gaming**   | `-f 5000 -s 5000`   | Improves gaming performance by increasing the amount of times (in ticks) the scheduler checks for the slice expiration on running tasks    |
+| **Power Save**        | `-f 50 -p`      | Improves power efficiency by reducing the frequency of time slice expiration checks and tries to keep the tasks running on the same CPU without migration.          |
+| **Low Latency**    | `-f 5000 -s 1000`        | Similar to the gaming profile but with a further reduced slice.                                            |
+| **Server**        | `-f 100`                | Reduced slice expiration checks to a bare minimum to improve throughput at the cost of responsiveness.
