@@ -115,7 +115,7 @@ In order to achieve this, the Kernel Manager uses the `scx_loader` with a config
 | **Low Latency**   | `-m performance -w -C 0`   | Meant to lower latency at the cost of throughput. Suitable for real-time applications like Audio Processing and Multimedia.   |
 | **Gaming**        | `-m all`      | Optimizes for high performance in games. Prioritizes P-cores over E-cores on Intel CPUs and CCDs on Ryzen X3D CPUs.           |
 | **Power Save**    | `-m powersave -I 10000 -t 10000 -s 10000 -S 1000`        | Prioritizes power efficiency. Favors less performant cores (e.g E-cores on Intel).                                            |
-| **Server**        | `-m all -s 20000 -S 1000 -I -1 -D -L`                | Tuned for server workloads. Trades responsiveness for throughput .
+| **Server**        | `-m all -s 20000 -S 1000 -I -1 -D -L`                | Tuned for server workloads. Trades responsiveness for throughput.
 
 #### LAVD
 
