@@ -16,7 +16,7 @@ Part of systemd family, systemd-boot was created to be as simple as possible, th
 - Boot entries are separated into multiple files making it easier to manage.
 
 ### Cons
- - Does not support BIOS systems.
+ - Lacks proper support for BIOS/MBR.
  - Very barebones design and lacks any kind of theming or customization.
  - Config is not auto-generated unless configured to do so. CachyOS includes systemd-boot manager to offer auto-generated configuration.
  - Only able to read boot images on EFI supported filesystems (FAT, FAT16, FAT32).
