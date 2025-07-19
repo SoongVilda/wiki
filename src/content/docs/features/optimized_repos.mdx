@@ -5,12 +5,11 @@ description: Information about our optimized repositories
 
 import { Tabs, TabItem, Steps } from '@astrojs/starlight/components';
 
-Our aim to deliver a performance-optimized distribution necessitates recompiling essential Arch Linux packages for x86-64-v3, x86-64-v4
-and Zen4 architectures.
+To deliver a performance-optimized distribution, CachyOS recompiles Arch Linux packages specifically for the `x86-64-v3`, `x86-64-v4`, and `Zen4+` architectures.
 
 - **x86-64-v3:** 5%-20% performance uplift compared to x86-64.
 - **x86-64-v4:** Delivers substantial performance gains through AVX512 support, depending on the workload.
-- **Zen 4/5:** In addition to the x86-64-v4 instruction set, the following are added:
+- **Zen 4/5:** In addition to the x86-64-v4 instruction set, the following instructions are added:
 
 ```text
 abm, adx, aes, avx512bf16, avx512bitalg, avx512ifma, avx512vbmi, avx512vbmi2, avx512vnni,
@@ -18,11 +17,13 @@ avx512vpopctndq, clflushopt, clwb, clzero, fsgsbase, gfni, mwaitx, pclmul, pku, 
 rpdid, rdrnd, rdseed, sha, sse4a, vaes, vockmulqdq, wbnoinvd, savec, xsaveopt, xsaves
 ```
 
+To learn more about these architectures. [Check this Wikipedia article](https://en.wikipedia.org/wiki/X86-64#Microarchitecture_levels)
+
 ## Customized Packages
 
 Our [CachyOS-PKGBUILDs](https://github.com/CachyOS/CachyOS-PKGBUILDS) repository contains packages that receive ongoing updates, patches and backported fixes.
 To boost performance, we selectively implement PGO, LTO, and BOLT optimizations depending on the need.
-We also maintain a couple of -git packages e.g mesa-git.
+We also maintain a couple of `-git` packages e.g mesa-git.
 
 ## Adding Our Repositories to an Existing Arch Linux Install
 
@@ -207,7 +208,3 @@ If you would like to know more about the performance uplift from our repositorie
    :::note
    Liquid-DSP and RocksDB were compiled using the Phoronix Benchmark Suite, ignoring the compilation flags specified in /etc/makepkg.conf resulting in a unexpected performance result for CachyOS.
    :::
-
-## Learn more
-
-- [Instruction sets for the various x86-64 micro-architectures](https://en.wikipedia.org/wiki/X86-64#Microarchitecture_levels)
