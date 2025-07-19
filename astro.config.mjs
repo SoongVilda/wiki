@@ -472,10 +472,6 @@ export default defineConfig({
               link: 'support/submitting_package_requests',
             },
             {
-              label: 'AUR Safety: Quick Checklist for CachyOS Users',
-              link: 'support/aur_safety_best_practices',
-            },
-            {
               label: 'Social',
               translations: {
                 ru: 'Социальные сети',
