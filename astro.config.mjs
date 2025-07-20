@@ -398,6 +398,17 @@ export default defineConfig({
               },
               link: 'configuration/automount_with_fstab',
             },
+            {
+              label: 'Enabling Hardware Acceleration in Google Chrome',
+              translations: {
+                ru: 'Включение аппаратного ускорения в Google Chrome',
+                de: 'Hardware-Beschleunigung in Google Chrome aktivieren',
+                pl: 'Włączanie akceleracji sprzętowej w Google Chrome',
+                cs: 'Povolení hardwarové akcelerace v Google Chrome',
+                sk: 'Povolenie hardvérovej akcelerácie v Google Chrome',
+              },
+              link: 'configuration/enabling_hardware_acceleration_in_google_chrome',
+            },
           ],
         },
         {
