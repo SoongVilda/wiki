@@ -111,13 +111,13 @@ Here is an explanation of what each mode means in scx_loader.
 - **Mode 1** = `Gaming`
 - **Mode 2** = `Power Saving`
 - **Mode 3** = `Low Latency`
-- **Mode 4** = `Server` *Currently only available for bpfland*
+- **Mode 4** = `Server`
 
 Example: LAVD running in Mode 1 is the equivalent of `scx_lavd --performance`
 
 *TLDR: Each mode is a set of different flags meant to improve the intended use case.*
 
-[For a more in depth look on what these Modes change on each scheduler](https://github.com/sched-ext/scx/blob/main/rust/scx_loader/src/config.rs#L175)
+[For a more in depth look on what these Modes change on each scheduler](<https://github.com/sched-ext/scx/blob/main/tools/scx_loader/src/config.rs#L174>)
 :::
 
 ### CachyOS Kernel Manager
@@ -132,7 +132,7 @@ Since there are many schedulers to choose from, we want to give a little introdu
 These schedulers are in constant development while being tested, so expect some of its features/flags which are subject to change.
 :::
 
-Feel free to report any issue or feedback to their [GitHub](/configuration/sched-ext#github) referenced below.
+Feel free to report any issue or feedback to their scheduler repository.
 
 ### [scx_bpfland](<https://github.com/sched-ext/scx/tree/main/scheds/rust/scx_bpfland>)
 
@@ -144,12 +144,26 @@ Bpfland when making decisions on which cores to use, it takes in consideration t
 
 **Use cases:**
 
-- Gaming
-- Desktop usage
-- Multimedia/Audio production
-- Great interactivity under intensive workloads
-- Power saving
-- Server workloads
+- **Gaming**
+- **Desktop usage**
+- **Multimedia/Audio production**
+- **Great interactivity under intensive workloads**
+- **Power saving**
+- **Server** *(Requires [`server_mode`](<https://github.com/sched-ext/scx/blob/main/tools/scx_loader/configuration.md#configuration-structure>) with scx_loader)*
+
+### [scx_rustland](<https://github.com/sched-ext/scx/tree/main/scheds/rust/scx_rustland>)
+
+**Developed by: Andrea Righi (arighi [GitHub](<https://github.com/arighi>))**
+
+Shares similarities with bpfland, Made with the intention of being easy to read and understand how it works due to its implementation in userspace.
+
+Keep in mind that there is a slight throughput disadvantage when using a userspace scheduler. Although rustland has the possibility of seamless integration with sophisticated libraries, tracing tools, external services (e.g., AI), etc.
+
+**Use cases:**
+
+- **Low latency workloads (Gaming, video conferences and live streaming)**
+- **Desktop usage**
+
 
 ### [scx_flash](<https://github.com/sched-ext/scx/tree/main/scheds/rust/scx_flash>)
 
@@ -159,10 +173,11 @@ A scheduler that focuses on ensuring fairness among tasks and performance predic
 
 **Use cases:**
 
-- Gaming
-- Latency sensitive workloads such as multimedia or real-time audio processing
-- Need for responsiveness under over-stressed situations
-- Consistency in performance
+- **Gaming**
+- **Latency sensitive workloads such as multimedia or real-time audio processing**
+- **Need for responsiveness under over-stressed situations**
+- **Consistency in performance**
+- **Server** *(Requires [`server_mode`](<https://github.com/sched-ext/scx/blob/main/tools/scx_loader/configuration.md#configuration-structure>) with scx_loader)*
 
 ### [scx_lavd](<https://github.com/sched-ext/scx/tree/main/scheds/rust/scx_lavd>)
 
@@ -177,12 +192,12 @@ overall good throughput and fair use of CPU time among tasks.***
 
 **Use cases:**
 
-- Gaming
-- Audio Production
-- Latency sensitive workloads
-- Desktop usage
-- Great interactivity under intensive workloads
-- Power saving
+- **Gaming**
+- **Audio Production**
+- **Latency sensitive workloads**
+- **Desktop usage**
+- **Great interactivity under intensive workloads**
+- **Power saving**
 
 One of the main and awesome capabilities that LAVD includes is **Core Compaction.** which without going into technical details: When CPU usage < 50%, Currently active cores will run for longer and at a higher frequency. Meanwhile Idle Cores will stay in C-State (Sleep) for a much longer duration achieving less overall power usage.
 
@@ -195,13 +210,13 @@ One of these features is tunability, allowing you to customize Rusty to suit you
 
 **Use cases:**
 
-- Gaming
-- Latency sensitive workloads
-- Desktop usage
-- Multimedia/Audio production
-- Latency sensitive workloads
-- Great interactivity under intensive workloads
-- Power saving
+- **Gaming**
+- **Latency sensitive workloads**
+- **Desktop usage**
+- **Multimedia/Audio production**
+- **Latency sensitive workloads**
+- **Great interactivity under intensive workloads**
+- **Power saving**
 
 For a more in depth look about what can be tuned for Rusty. Check out the help page
 
@@ -215,20 +230,39 @@ scx_rusty --help
 
 A general purpose scheduler that focuses on pick two load balancing between
 LLCs. Keeps high cache locality and work conservation while providing
-reasonable latency. Can perform well in both desktop and server workloads.
+reasonable latency.
 
 **Use cases:**
 
-- Server workloads
-- Desktop environments
-- Gaming (with some manual tuning)
+- **Server** *(Requires [`server_mode`](<https://github.com/sched-ext/scx/blob/main/tools/scx_loader/configuration.md#configuration-structure>) with scx_loader)*
+- **Desktop environments**
+- **Gaming (with some manual tuning)**
+
+### [scx_tickless](<https://github.com/sched-ext/scx/tree/main/scheds/rust/scx_tickless>)
+
+**Developed by: Andrea Righi (arighi [Github](<https://github.com/arighi>))**
+
+:::note
+In order to effectively disable ticks on the "tickless" CPUs the kernel must be booted with `nohz_full`. Keep in mind that `nohz_full` introduces syscall overhead, so this may regress latency-sensitive workloads.
+:::
+
+scx_tickless is a server-oriented scheduler designed for cloud computing, virtualization, and high-performance computing workloads.
+
+The scheduler works by routing all scheduling events through a pool of primary CPUs assigned to handle these events. This allows disabling the scheduler's tick on other CPUs, reducing OS noise.
+
+**Use cases:**
+
+- **Cloud computing**
+- **Virtualization**
+- **High performance computing workloads**
+- **Server** *(Requires [`server_mode`](<https://github.com/sched-ext/scx/blob/main/tools/scx_loader/configuration.md#configuration-structure>) with scx_loader)*
 
 ## General recommendations
 
 ### LAVD Autopilot & Autopower
 
 ***Quotes from Changwoo Min:***
-- **In autopilot mode, the scheduler adjusts its power mode `Powersave, Balanced, or Performance` based on the system's load, specifically CPU utilization**
+- **In autopilot mode, the scheduler adjusts its power mode `Powersave, Balanced, or Performance` based on the system load, specifically CPU utilization**
 
 - **Autopower: Automatically decide the scheduler's power mode based on the system's energy profile aka EPP (Energy Performance Preference).**
 
