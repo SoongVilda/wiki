@@ -78,7 +78,7 @@ Please open an issue in [linux-cachyos GitHub](https://github.com/CachyOS/linux-
 
 ## Prebuilt Kernel Modules
 
-To accomodate a larger userbase, CachyOS ships some well-known and highly used kernel modules along with the kernel. This means that users will no longer
+To accommodate a larger userbase, CachyOS ships some well-known and highly used kernel modules along with the kernel. This means that users will no longer
 have to recompile those modules after every kernel update or on every new kernel install, but will only have to install them from the repository as it is
 already precompiled. This effectively obsoletes any `-dkms` packages that a user might have that provides the same module as the precompiled version.
 
@@ -105,14 +105,7 @@ and already [set up](https://github.com/CachyOS/linux-cachyos/blob/master/linux-
 ## Package Naming Convention
 
 ```sh
-linux-cachyos # Base kernel package for the default kernel. Compiled with clang
-linux-cachyos-gcc # GCC-compiled counterpart for linux-cachyos
-linux-cachyos-{,gcc-}headers # Kernel headers, mainly for building
-linux-cachyos-{,gcc-}nvidia # Precompiled closed source NVIDIA modules for linux-cachyos kernel
-linux-cachyos-{,gcc-}nvidia-open
-linux-cachyos-{,gcc-}zfs # Precompiled ZFS modules for linux-cachyos kernel
-linux-cachyos-{,gcc-}dbg # Unstripped linux binary for debugging
-
+linux-cachyos # Base kernel package for the default kernel. Compiled with GCC
 linux-cachyos-hardened # Base kernel package for the hardened kernel. Compiled with GCC
 linux-cachyos-hardened-lto # clang-compiled counterpart for linux-cachyos-hardened
 linux-cachyos-hardened-{,lto-}headers
