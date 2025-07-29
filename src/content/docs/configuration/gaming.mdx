@@ -90,6 +90,21 @@ Example: `__GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1 %command% game-performance %comm
 LD_PRELOAD="" %command%
 ```
 
+### Pre-caching shaders with Proton-CachyOS, -GE and -EM
+
+:::note
+It's advised to disable `Steam Precache of Shaders` feature when utilizing Proton-CachyOS, Proton-GE or Proton-em because they already contain all the necessary codecs to play videos inside the game and nowadays a relatively modern GPU-CPU combo should be more than capable dealing with compiling shaders ingame.
+
+But if you have time to spare, then you can ignore this tip and let Steam pre compile some shaders for your game.
+
+**`Keep in mind that not everything gets cached during this process.`**
+:::
+
+**Here is how to disable this feature:**
+
+<ImageComponent imgsrc={import('~/assets/images/steam-setting.png')} />
+<ImageComponent imgsrc={import('~/assets/images/steam-shader-cache.png')} />
+
 ## Performance tips
 
 ### Power Profile Switching on Demand
