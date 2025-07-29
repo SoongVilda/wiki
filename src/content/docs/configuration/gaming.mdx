@@ -3,6 +3,7 @@ title: Gaming with CachyOS Guide
 description: 'It covers essential package installation, Steam gaming with Proton, various Proton version options, Lutris as a central hub for all games, and script installers for popular games.'
 ---
 
+import ImageComponent from '~/components/image-component.astro';
 import MultipleImageComponent from '~/components/multiple-images-component.astro';
 import { Tabs, TabItem, Steps } from '@astrojs/starlight/components';
 
@@ -41,25 +42,11 @@ Follow the steps below to start with the gaming setup.
     </TabItem>
 </Tabs>
 
-## Steam
-
-For Steam users, playing games on CachyOS is a breeze! Open Steam and follow the [Proton guide](/configuration/gaming#how-to-enable-proton-support-in-steam) and you're ready to enjoy your games.
+## Steam FAQ & Tips
 
 :::note
 Laptop users with discrete NVIDIA GPUs should refer to the following [guide](https://wiki.cachyos.org/configuration/dual_gpu/)
 :::
-
-### How to enable Proton support in Steam
-
-<br />
-<MultipleImageComponent
-  images={[
-    import('~/assets/images/Steam1_Screenshot_20230907_071249.png'),
-    import('~/assets/images/Steam2_Screenshot_20230907_071521.png'),
-    import('~/assets/images/Steam3_Screenshot_20230907_072849.png'),
-    import('~/assets/images/Steam4_Screenshot_20230907_072236.png')
-  ]}
-/>
 
 :::tip
 CachyOS provides various Proton versions that we build & maintain for further performance improvements:
@@ -69,14 +56,13 @@ CachyOS provides various Proton versions that we build & maintain for further pe
 :::
 
 :::tip
-To check if your game is compatible or how does it run with Linux, visit [proton-db](https://www.protondb.com/) or [Are We Anti-Cheat Yet?](https://areweanticheatyet.com/).
+To check if your game is compatible or how does it run with Linux, visit **[ProtonDB](https://www.protondb.com/)** or **[Are We Anti-Cheat Yet?](https://areweanticheatyet.com/).**
 :::
 
-## Steam FAQ & Tips
-
-### Which Proton version should i use in Steam?
+### Which Proton version should be used in Steam?
 
 - [`proton-cachyos`](https://github.com/CachyOS/proton-cachyos) Being the one that we build and maintain is highly recommended unless it has an issue with the game you want to play. Should work in most cases.
+- [`proton-cachyos-slr`](https://github.com/CachyOS/proton-cachyos/releases) For games using **BattlEye** or **Easy Anti-Cheat**.
 - `Proton Experimental` Bleeding edge release from `Valve` If the game you want to play is relatively new or it doesn't work well with the current Proton stable release or perhaps you saw people recommending it in [ProtonDB](https://www.protondb.com/).
 - `Proton 9.0.4 or lower` Stable releases from `Valve`. If the game you want to play only works in a previous Proton release.
 - `Proton-GE` Build made by [GloriousEggroll](https://github.com/GloriousEggroll/proton-ge-custom) in some cases it comes in handy.
@@ -266,6 +252,50 @@ Do not forget to include the `UMU_NO_RUNTIME` environment variable
             4. Add `UMU_NO_RUNTIME` in the Variable name with a value of `1` and click on the plus sign.
         </Steps>
     </TabItem>
+</Tabs>
+
+### How to install proton-cachyos-slr
+
+<Tabs>
+
+<TabItem label='Automatic (protonup)'>
+
+<Steps>
+1. Install **protonup-qt**
+    ```sh
+    sudo pacman -S protonup-qt
+    ```
+2. Open **protonup-qt** and follow the screenshot:
+    <ImageComponent imgsrc={import('~/assets/images/steam-protonup.png')} />
+    :::note
+    Choose the `x86-64_v3` version if your CPU supports **[AVX2](/installation/installation_prepare#x86_64-microarchitecture-level-support)**.
+
+    Otherwise download the one ending with `x86-64`.
+    :::
+3. Restart Steam if you had it opened.
+
+</Steps>
+
+</TabItem>
+
+<TabItem label='Manual'>
+
+<Steps>
+
+1. Download the latest version [here.](https://github.com/CachyOS/proton-cachyos/releases) (**`Scroll down to Assets`**)
+
+    :::note
+    Choose the one that ends with `x86-64_v3` if your CPU supports **[AVX2](/installation/installation_prepare#x86_64-microarchitecture-level-support)**
+
+    Otherwise download the one ending with `x86-64`.
+    :::
+2. Decompress the file and move the folder to `~/.steam/steam/compatibilitytools.d/`
+3. Restart Steam if you had it open.
+
+</Steps>
+
+</TabItem>
+
 </Tabs>
 
 ## Wine-CachyOS
